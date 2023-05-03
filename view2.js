@@ -30,6 +30,7 @@ const fetchData = async () => {
     console.log(data);
     updateTable(data);
     showForecast(data);
+    updateStatistics(data);
   } catch (error) {
 
   }
@@ -48,9 +49,9 @@ const showForecast = (data) => {
   console.log(temperature);
   console.log(dates);
 
-  const chartElem = document.getElementById('my-chart');
+  const chartElem = document.getElementById('tempChart');
   chartElem.innerHTML = '';
-  const ctx = document.getElementById('my-chart').getContext('2d');
+  const ctx = document.getElementById('tempChart').getContext('2d');
   var myChart = new Chart(ctx, {
     type: 'line',
     data: {
@@ -73,16 +74,11 @@ const showForecast = (data) => {
 };
 
 function addData(label, data) {
-  // console.log(myChart);
-  console.log("hello");
-  console.log(label);
-  console.log(data);
   myChart.data.labels = label;
   myChart.data.datasets[0].forEach((dataset) => {
     dataset.data = data;
   });
   myChart.update();
-  console.log("hellooo");
 }
 
 
@@ -115,8 +111,6 @@ const updateStatistics = (data) => {
 
 const fetchHourlyData = async (w, h) => {
   try {
-    console.log(w);
-    console.log(h);
     const response = await fetch('http://webapi19sa-1.course.tamk.cloud/v1/weather/' + w + '/' + h);
     const data = await response.json();
     updateTable(data);
@@ -124,7 +118,6 @@ const fetchHourlyData = async (w, h) => {
     const chartLabels = data.map(item => new Date(item.date_time).toDateString());
     const chartData = data.map(item => item.temperature);
     addData(chartLabels, chartData);
-    console.log(data);
   } catch (error) {
 
   }

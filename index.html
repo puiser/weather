@@ -13,7 +13,7 @@
         <nav class="navbar">
             <ul class="nav nav-tabs">
                 <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="./index.html">Latest values</a>
+                <a class="nav-link active" aria-current="page" href="./index.html">Signal values</a>
                 </li>
                 <li class="nav-item">
                 <a class="nav-link" href="./view2.html">Temperature</a>
@@ -23,11 +23,30 @@
                 </li>
             </ul>
         </nav>
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-bs-toggle="dropdown" aria-expanded="false">
+            Select the measurement
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+            <li><button onclick="setWeather('temperature')" class="dropdown-item" type="button">Temperature</button></li>
+            <li><button onclick="setWeather('wind_speed')" class="dropdown-item" type="button">Wind</button></li>
+          </ul>
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
+            Select the time span
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+            <li><button onclick="setTimeSpan('0')" class="dropdown-item" type="button">Now</button></li>
+            <li><button onclick="setTimeSpan('24')" class="dropdown-item" type="button">24 hours</button></li>
+            <li><button onclick="setTimeSpan('72')" class="dropdown-item" type="button">72 hours</button></li>
+            <li><button onclick="setTimeSpan('168')" class="dropdown-item" type="button">1 week</button></li>
+            <li><button onclick="setTimeSpan('720')" class="dropdown-item" type="button">Last month</button></li>
+          </ul>
+        </div>
         <table class="table table-striped">
             <thead>
               <tr>
-                <th scope="col">Date and time</th>
-                <th scope="col">Key</th>
+                <th scope="col">Date</th>
+                <th scope="col">Time</th>
                 <th scope="col">Value</th>
               </tr>
             </thead>

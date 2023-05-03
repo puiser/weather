@@ -28,7 +28,6 @@ const fetchData = async() => {
     try {
         const response = await fetch('http://webapi19sa-1.course.tamk.cloud/v1/weather/humidity_out');
         const data = await response.json();
-        console.log(data);
         data.map((item) => {
             let tableItem = createTableItem(item);
             tableBody.append(tableItem);
@@ -43,12 +42,11 @@ fetchData();
 
 
 const showForecast = (data) => {
-  console.log(data);
   const humidity_out = data.map(item => item.humidity_out);
   const dates = data.map(item => new Date(item.date_time).toDateString());
 
   
-  const ctx = document.getElementById('my-chart').getContext('2d');
+  const ctx = document.getElementById('humChart').getContext('2d');
   const myChart = new Chart(ctx, {
     type: 'bar',
     data: {
@@ -81,7 +79,6 @@ try {
 
 
 } catch (error) {
-    console.log(error);
 }
 
 }
@@ -118,11 +115,8 @@ const fetchHourlyData = async(w,h) => {
   let tableBody = document.getElementById('tableBody')
   tableBody.innerHTML = '';
   try {
-      console.log(w);
-      console.log(h);
       const response = await fetch('http://webapi19sa-1.course.tamk.cloud/v1/weather/' + w + '/'+ h);
       const data = await response.json();
-      console.log(data);
       data.map((item) => {
           let tableItem = createTableItem(item);
           tableBody.append(tableItem);
